@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Tłumacz</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Prosty tłumacz</h1>
+
+    <label for="text">Tekst do przetłumaczenia:</label><br>
+    <textarea v-model="text" id="text" placeholder="Wpisz tekst tutaj..."></textarea><br><br>
+
+    <label for="sourceLang">Język źródłowy:</label>
+    <select v-model="sourceLang" id="sourceLang">
+      <option value="pl">Polski</option>
+      <option value="en">Angielski</option>
+    </select>
+
+    <label for="targetLang">Język docelowy:</label>
+    <select v-model="targetLang" id="targetLang">
+      <option value="en">Angielski</option>
+      <option value="pl">Polski</option>
+    </select><br><br>
+
+    <button @click="translateText">Tłumacz</button>
+
+    <br><br>
+    <label for="translation">Tłumaczenie:</label><br>
+    <textarea :value="translation" id="translation" readonly></textarea><br>
+
+    <div class="tooltip" v-if="translation">
+      <button class="copy-btn" @click="copyTranslation">📋 Kopiuj tłumaczenie</button>
+      <span class="tooltiptext">Kopiuj tłumaczenie</span>
+    </div>
+
+    <p v-if="copySuccess" class="copy-message">Tekst został skopiowany!</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="/static/main.js"></script>
+</body>
+</html>
